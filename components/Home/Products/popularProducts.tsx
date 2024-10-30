@@ -77,7 +77,7 @@ const PopularProducts = () => {
 
 	return (
 		<section className="py-3 bg-white">
-			<div className="container mx-auto px-4">
+			<div className="container mx-auto pl-4 pr-0">
 				<div className="flex flex-row justify-between items-start">
 					<h2 className="text-xl font-bold mb-4">Top-Rated Products</h2>
 					<Link href="/product" className="flex items-center justify-center">
@@ -86,13 +86,13 @@ const PopularProducts = () => {
 					</Link>
 				</div>
 				<div className="relative">
-					<div className="flex overflow-x-auto space-x-4 pb-4">
+					<div className="flex overflow-x-auto space-x-2 pb-4">
 						{isLoading
 							? Array.from({ length: productsPerPage }).map((_, index) => (
 									<SkeletonCard key={index} viewMode={viewMode} />
 							  ))
 							: topRatedProducts.map((product: any) => (
-									<div key={product.id} className="flex-none w-32">
+									<div key={product.id} className="flex-none w-36">
 										<div className="bg-white relative rounded-lg shadow-md overflow-hidden">
 											<img
 												src={product.image}
