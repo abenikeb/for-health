@@ -76,7 +76,7 @@ const PopularProducts = () => {
 	);
 
 	return (
-		<section className="py-6 bg-white">
+		<section className="py-3 bg-white">
 			<div className="container mx-auto px-4">
 				<div className="flex flex-row justify-between items-start">
 					<h2 className="text-xl font-bold mb-4">Top-Rated Products</h2>
@@ -92,12 +92,12 @@ const PopularProducts = () => {
 									<SkeletonCard key={index} viewMode={viewMode} />
 							  ))
 							: topRatedProducts.map((product: any) => (
-									<div key={product.id} className="flex-none w-40">
+									<div key={product.id} className="flex-none w-32">
 										<div className="bg-white relative rounded-lg shadow-md overflow-hidden">
 											<img
 												src={product.image}
 												alt={product.name}
-												className="w-full h-40 object-cover"
+												className="w-full h-28 object-cover"
 											/>
 											<div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
 												<Button

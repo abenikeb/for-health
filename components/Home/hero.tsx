@@ -4,10 +4,8 @@ import { useState, FormEvent, useEffect } from "react";
 import Link from "next/link";
 import { ChevronRight, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 const Hero = () => {
-	const [searchQuery, setSearchQuery] = useState("");
 	const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
 
 	const bannerImages = [
