@@ -1,66 +1,24 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Package, ChevronRight, Search, ShoppingBag } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { getUserOrder } from "@lib/data";
 
 export default function OrdersPage() {
-	// Mock data for orders with more details
-	const orders = [
-		{
-			id: "ORD001",
-			date: "2024-10-20",
-			total: 129.99,
-			status: "Delivered",
-			progress: 100,
-			items: [
-				{
-					name: "Organic Apples",
-					image: "/assets/images/product1.jpg?height=80&width=80",
-					quantity: 1,
-					price: 79.99,
-				},
-				{
-					name: "Phone Case",
-					image: "/assets/images/banner3_.jpg?height=80&width=80",
-					quantity: 2,
-					price: 25.0,
-				},
-			],
-		},
-		{
-			id: "ORD002",
-			date: "2024-10-18",
-			total: 79.5,
-			status: "Shipped",
-			progress: 75,
-			items: [
-				{
-					name: "Organic Honey",
-					image: "/assets/images/product3.jpg?height=80&width=80",
-					quantity: 1,
-					price: 79.5,
-				},
-			],
-		},
-		{
-			id: "ORD003",
-			date: "2023-10-15",
-			total: 199.99,
-			status: "Processing",
-			progress: 25,
-			items: [
-				{
-					name: "Fresh Orange Juice",
-					image: "/assets/images/product2.jpg?height=80&width=80",
-					quantity: 1,
-					price: 89.99,
-				},
-			],
-		},
-	];
+	const [orders, setOrders] = useState<any>([]);
+
+	const fetchDataOrders = async () => {
+		const userOrders = await getUserOrder();
+		setOrders(userOrders);
+	};
+
+	useEffect(() => {
+		fetchDataOrders();
+	}, []);
 
 	return (
 		<div className="min-h-screen bg-gray-100">
@@ -87,7 +45,7 @@ export default function OrdersPage() {
 					</div>
 
 					<div className="space-y-8">
-						{orders.map((order) => (
+						{orders.map((order: any) => (
 							<div
 								key={order.id}
 								className="border border-gray-200 rounded-lg p-6">
@@ -134,7 +92,7 @@ export default function OrdersPage() {
 								</div>
 
 								<div className="space-y-4">
-									{order.items.map((item, index) => (
+									{order.items.map((item: any, index: any) => (
 										<div key={index} className="flex items-center space-x-4">
 											<Image
 												src={item.image}

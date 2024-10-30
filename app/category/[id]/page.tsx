@@ -9,73 +9,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
-
-// Sample products
-const allCategoryProducts = [
-	{
-		id: 1,
-		name: "Organic Apples",
-		price: 99.99,
-		image: "/assets/images/product1.jpg?height=200&width=200",
-		category: "Fruits & Vegetables",
-		location: "Addis Ababa",
-		rating: 4.5,
-		description: "Fruits & Vegetables, perfect for on-the-go professionals.",
-	},
-	{
-		id: 2,
-		name: "Whole Milk",
-		price: 799.99,
-		image: "/assets/images/image_fx_ (2).jpg?height=200&width=200",
-		category: "Dairy Products",
-		location: "Adama",
-		rating: 4.7,
-		description: "Experience lightning-fast connectivity with our product.",
-	},
-	{
-		id: 3,
-		name: "Herbal Honey",
-		price: 299.99,
-		image: "/assets/images/image_fx_ (3).jpg?height=200&width=200",
-		category: "Beverages",
-		location: "Awasa",
-		rating: 4.6,
-		description:
-			"Immerse yourself in pure sound with advanced noise-cancelling technology.",
-	},
-	{
-		id: 4,
-		name: "Mixed Nuts",
-		price: 1499.99,
-		image: "/assets/images/product3.jpg?height=200&width=200",
-		category: "Snacks",
-		location: "Addis Ababa",
-		rating: 4.8,
-		description:
-			"Experience stunning visuals with our latest 4K OLED technology.",
-	},
-	{
-		id: 5,
-		name: "Bagels",
-		price: 1299.99,
-		image: "/assets/images/product4.jpg?height=200&width=200",
-		category: "Bakery",
-		location: "Adama",
-		rating: 4.4,
-		description: "Capture life's moments with exceptional clarity and detail.",
-	},
-	{
-		id: 6,
-		name: "Protein Powder",
-		price: 249.99,
-		image: "/assets/images/banner1.jpg?height=200&width=200",
-		category: "Health & Wellness",
-		location: "Bahir Dar",
-		rating: 4.3,
-		description:
-			"Stay connected and track your fitness with our latest smartwatch.",
-	},
-];
+import { getAllProducts } from "@lib/data";
 
 export default function CategoryPage({ params }: any) {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -85,13 +19,22 @@ export default function CategoryPage({ params }: any) {
 	const [viewMode, setViewMode] = useState("grid");
 	const [isLoading, setIsLoading] = useState(true);
 	const productsPerPage = viewMode === "grid" ? 6 : 5;
-
+	const [allCategoryProducts, setAllCategoryProducts] = useState<any>([]);
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
 	// Get category from URL query (e.g., /category?name=Laptops)
 	// const selectedCategory = searchParams.get("name") || "All";
 	const selectedCategory = params.id || "All";
+
+	const fetcProductItems = async () => {
+		const products = await getAllProducts();
+		setAllCategoryProducts(products);
+	};
+
+	useEffect(() => {
+		fetcProductItems();
+	}, []);
 
 	useEffect(() => {
 		// Simulate loading delay
@@ -104,7 +47,7 @@ export default function CategoryPage({ params }: any) {
 
 	// Filter products based on category and search query
 	const filteredProducts = allCategoryProducts.filter(
-		(product) =>
+		(product: any) =>
 			(selectedCategory === "All" ||
 				product.category.toLowerCase() === selectedCategory) &&
 			product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&

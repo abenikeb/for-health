@@ -11,7 +11,7 @@ const Hero = () => {
 	const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
 
 	const bannerImages = [
-		"/assets/images/banner5.jpg?height=400&width=1200&text=Summer+Sale",
+		"/assets/images/banner.jpg?height=400&width=1200&text=Summer+Sale",
 		"/assets/images/banner.jpg?height=400&width=1200&text=New+Arrivals",
 		"/assets/images/banner5.jpg?height=400&width=1200&text=Special+Offers",
 	];

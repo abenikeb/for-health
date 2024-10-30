@@ -7,78 +7,24 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
 import { Skeleton } from "@components/ui/skeleton";
 import { useEffect, useState } from "react";
-
-const topRatedProducts = [
-	{
-		id: 1,
-		name: "Organic Apples",
-		price: 99.99,
-		image: "/assets/images/product1.jpg?height=200&width=200",
-		category: "Fruits & Vegetables",
-		location: "Addis Ababa",
-		rating: 4.5,
-		description: "Fruits & Vegetables, perfect for on-the-go professionals.",
-	},
-	{
-		id: 2,
-		name: "Whole Milk",
-		price: 99.99,
-		image: "/assets/images/product2.jpg?height=200&width=200",
-		category: "Dairy Products",
-		location: "Adama",
-		rating: 4.7,
-		description: "Experience lightning-fast connectivity with our product.",
-	},
-	{
-		id: 3,
-		name: "Herbal Honey",
-		price: 299.99,
-		image: "/assets/images/image_fx_ (3).jpg?height=200&width=200",
-		category: "Beverages",
-		location: "Awash",
-		rating: 4.6,
-		description:
-			"Immerse yourself in pure sound with advanced noise-cancelling technology.",
-	},
-	{
-		id: 4,
-		name: "Mixed Nuts",
-		price: 1499.99,
-		image: "/assets/images/product3.jpg?height=200&width=200",
-		category: "Snacks",
-		location: "Addis Ababa",
-		rating: 4.8,
-		description:
-			"Experience stunning visuals with our latest 4K OLED technology.",
-	},
-	{
-		id: 5,
-		name: "Bagels",
-		price: 1299.99,
-		image: "/assets/images/product4.jpg?height=200&width=200",
-		category: "Bakery",
-		location: "Adama",
-		rating: 4.4,
-		description: "Capture life's moments with exceptional clarity and detail.",
-	},
-	{
-		id: 6,
-		name: "Protein Powder",
-		price: 249.99,
-		image: "/assets/images/banner1.jpg?height=200&width=200",
-		category: "Health & Wellness",
-		location: "Bahir Dar",
-		rating: 4.3,
-		description:
-			"Stay connected and track your fitness with our latest smartwatch.",
-	},
-];
+import { getAllProducts } from "@lib/data";
 
 const PopularProducts = () => {
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(true);
 	const [viewMode, setViewMode] = useState("grid");
 	const productsPerPage = viewMode === "grid" ? 2 : 2;
+
+	const [topRatedProducts, setTopRatedProducts] = useState<any>([]);
+
+	const fetcProductItems = async () => {
+		const products = await getAllProducts();
+		setTopRatedProducts(products);
+	};
+
+	useEffect(() => {
+		fetcProductItems();
+	}, []);
 
 	const handleRoute = () => {
 		router.push("/product/1");
@@ -145,7 +91,7 @@ const PopularProducts = () => {
 							? Array.from({ length: productsPerPage }).map((_, index) => (
 									<SkeletonCard key={index} viewMode={viewMode} />
 							  ))
-							: topRatedProducts.map((product) => (
+							: topRatedProducts.map((product: any) => (
 									<div key={product.id} className="flex-none w-40">
 										<div className="bg-white relative rounded-lg shadow-md overflow-hidden">
 											<img

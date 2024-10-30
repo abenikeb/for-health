@@ -18,7 +18,7 @@ export default function Component() {
 			{/* Top-Rated Products Section */}
 			<PopularProducts />
 			{/* Shop by Category */}
-			<Category />
+			{/* <Category /> */}
 			{/* newArrivals */}
 			<NewArrivals />
 			{/* All Products Section */}

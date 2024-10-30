@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Minus, Plus, Trash2, ArrowLeft } from "lucide-react";
@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent } from "@/components/ui/card";
 import { useRouter } from "next/navigation";
+import { getUserCart } from "@lib/data";
 
 interface CartItem {
 	id: number;
@@ -20,41 +21,35 @@ interface CartItem {
 
 export default function CartPage() {
 	const router = useRouter();
-	const [cartItems, setCartItems] = useState<CartItem[]>([
-		{
-			id: 1,
-			name: "Organic Apples",
-			price: 299.99,
-			quantity: 1,
-			image: "/assets/images/product1.jpg?height=100&width=100",
-		},
-		{
-			id: 2,
-			name: "Whole Milk",
-			price: 199.99,
-			quantity: 2,
-			image: "/assets/images/product2.jpg?height=100&width=100",
-		},
-	]);
+	const [cartItems, setCartItems] = useState<CartItem[] | any>([]);
+
+	const fetchDataCartItems = async () => {
+		const userOrders = await getUserCart();
+		setCartItems(userOrders);
+	};
+
+	useEffect(() => {
+		fetchDataCartItems();
+	}, []);
 
 	const updateQuantity = (id: number, newQuantity: number) => {
 		setCartItems(
 			cartItems
-				.map((item) =>
+				.map((item: any) =>
 					item.id === id
 						? { ...item, quantity: Math.max(0, newQuantity) }
 						: item
 				)
-				.filter((item) => item.quantity > 0)
+				.filter((item: any) => item.quantity > 0)
 		);
 	};
 
 	const removeItem = (id: number) => {
-		setCartItems(cartItems.filter((item) => item.id !== id));
+		setCartItems(cartItems.filter((item: any) => item.id !== id));
 	};
 
 	const subtotal = cartItems.reduce(
-		(sum, item) => sum + item.price * item.quantity,
+		(sum: any, item: any) => sum + item.price * item.quantity,
 		0
 	);
 	const tax = subtotal * 0.1;
@@ -86,7 +81,7 @@ export default function CartPage() {
 			) : (
 				<div className="grid md:grid-cols-3 gap-8">
 					<div className="md:col-span-2 space-y-4">
-						{cartItems.map((item) => (
+						{cartItems.map((item: any) => (
 							<Card key={item.id}>
 								<CardContent className="p-4">
 									<div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-4 sm:space-y-0">
