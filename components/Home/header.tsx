@@ -86,7 +86,7 @@ export default function Header() {
 												{categories.map((category: any) => (
 													<Link
 														key={category.name}
-														href={`/category/${category.name.toLowerCase()}`}
+														href={`/category/${category.value.toLowerCase()}`}
 														className="flex items-center justify-between text-sm text-gray-600 hover:text-amber-600 transition-colors"
 														onClick={() => setIsMenuOpen(false)}>
 														<span className="flex items-center space-x-2">

@@ -11,24 +11,22 @@ import { getAllProducts } from "@lib/data";
 
 const PopularProducts = () => {
 	const router = useRouter();
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 	const [viewMode, setViewMode] = useState("grid");
 	const productsPerPage = viewMode === "grid" ? 2 : 2;
 
 	const [topRatedProducts, setTopRatedProducts] = useState<any>([]);
 
 	const fetcProductItems = async () => {
+		setIsLoading(true);
 		const products = await getAllProducts();
 		setTopRatedProducts(products);
+		setIsLoading(false);
 	};
 
 	useEffect(() => {
 		fetcProductItems();
 	}, []);
-
-	const handleRoute = () => {
-		router.push("/product/1");
-	};
 
 	const handleProductClick = () => {
 		router.push("/product/1");
@@ -97,15 +95,10 @@ const PopularProducts = () => {
 											<img
 												src={product.image}
 												alt={product.name}
+												onClick={handleProductClick}
 												className="w-full h-28 object-cover"
 											/>
-											<div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-												<Button
-													onClick={handleProductClick}
-													variant="secondary">
-													View Details
-												</Button>
-											</div>
+
 											<div className="p-2">
 												<h3 className="text-sm font-semibold truncate">
 													{product.name}

@@ -35,75 +35,7 @@ import { Slider } from "@/components/ui/slider";
 import { Toggle } from "@/components/ui/toggle";
 import { Skeleton } from "@/components/ui/skeleton";
 import Link from "next/link";
-
-const allProducts = [
-	{
-		id: 1,
-		name: "Organic Apples",
-		price: 99.99,
-		image: "/assets/images/product1.jpg?height=200&width=200",
-		category: "Fruits & Vegetables",
-		location: "Addis Ababa",
-		rating: 4.5,
-		description: "Fruits & Vegetables, perfect for on-the-go professionals.",
-	},
-	{
-		id: 2,
-		name: "Whole Milk",
-		price: 799.99,
-		image: "/assets/images/image_fx_ (2).jpg?height=200&width=200",
-		category: "Dairy Products",
-		location: "Adama",
-		rating: 4.7,
-		description: "Experience lightning-fast connectivity with our product.",
-	},
-	{
-		id: 3,
-		name: "Herbal Honey",
-		price: 299.99,
-		image: "/assets/images/image_fx_ (3).jpg?height=200&width=200",
-		category: "Beverages",
-		location: "Awasa",
-		rating: 4.6,
-		description:
-			"Immerse yourself in pure sound with advanced noise-cancelling technology.",
-	},
-	{
-		id: 4,
-		name: "Mixed Nuts",
-		price: 1499.99,
-		image: "/assets/images/product3.jpg?height=200&width=200",
-		category: "Snacks",
-		location: "Addis Ababa",
-		rating: 4.8,
-		description:
-			"Experience stunning visuals with our latest 4K OLED technology.",
-	},
-	{
-		id: 5,
-		name: "Bagels",
-		price: 1299.99,
-		image: "/assets/images/product4.jpg?height=200&width=200",
-		category: "Bakery",
-		location: "Adama",
-		rating: 4.4,
-		description: "Capture life's moments with exceptional clarity and detail.",
-	},
-	{
-		id: 6,
-		name: "Protein Powder",
-		price: 249.99,
-		image: "/assets/images/banner1.jpg?height=200&width=200",
-		category: "Health & Wellness",
-		location: "Bahir Dar",
-		rating: 4.3,
-		description:
-			"Stay connected and track your fitness with our latest smartwatch.",
-	},
-];
-
-const categories = [...new Set(allProducts.map((product) => product.category))];
-const locations = [...new Set(allProducts.map((product) => product.location))];
+import { getAllProducts } from "@lib/data";
 
 export default function Product() {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -116,6 +48,32 @@ export default function Product() {
 	const [isLoading, setIsLoading] = useState(true);
 	const productsPerPage = viewMode === "grid" ? 6 : 5;
 	const router = useRouter();
+	const [allProducts, setAllProducts] = useState<any>([]);
+
+	const [categories, setCategories] = useState<any>([]);
+	const [locations, setLocations] = useState<any>([]);
+
+	// const categories = [
+	// 	...new Set(allProducts.map((product: any) => product.category)),
+	// ];
+	// const locations = [
+	// 	...new Set(allProducts.map((product: any) => product.location)),
+	// ];
+
+	const fetcProductItems = async () => {
+		const products = await getAllProducts();
+		setAllProducts(products);
+		setCategories([
+			...new Set(products.map((product: any) => product.category)),
+		]);
+		setCategories([
+			...new Set(products.map((product: any) => product.location)),
+		]);
+	};
+
+	useEffect(() => {
+		fetcProductItems();
+	}, []);
 
 	useEffect(() => {
 		// Simulate loading
@@ -127,7 +85,7 @@ export default function Product() {
 	}, []);
 
 	const filteredProducts = allProducts.filter(
-		(product) =>
+		(product: any) =>
 			product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
 			(selectedCategory === "All" || product.category === selectedCategory) &&
 			(selectedLocation === "All" || product.location === selectedLocation) &&
@@ -321,7 +279,7 @@ export default function Product() {
 										</SelectTrigger>
 										<SelectContent>
 											<SelectItem value="All">All Categories</SelectItem>
-											{categories.map((category) => (
+											{categories.map((category: any) => (
 												<SelectItem key={category} value={category}>
 													{category}
 												</SelectItem>
@@ -339,7 +297,7 @@ export default function Product() {
 										</SelectTrigger>
 										<SelectContent>
 											<SelectItem value="All">All Locations</SelectItem>
-											{locations.map((location) => (
+											{locations.map((location: any) => (
 												<SelectItem key={location} value={location}>
 													{location}
 												</SelectItem>

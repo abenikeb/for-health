@@ -10,7 +10,7 @@ const Hero = () => {
 
 	const bannerImages = [
 		"/assets/images/banner2.png?height=400&width=1200&text=Summer+Sale",
-		"/assets/images/banner.jpg?height=400&width=1200&text=New+Arrivals",
+		"/assets/images/banner2.png?height=400&width=1200&text=New+Arrivals",
 		"/assets/images/banner2.jpg?height=400&width=1200&text=Special+Offers",
 	];
 

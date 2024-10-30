@@ -89,7 +89,7 @@ export const getAllProducts = async () => {
 			name: "Organic Apples",
 			price: 99.99,
 			image: "/assets/images/product1.jpg?height=200&width=200",
-			category: "Fruits & Vegetables",
+			category: "fruits_and_vegetables",
 			location: "Addis Ababa",
 			rating: 4.5,
 			description: "Fruits & Vegetables, perfect for on-the-go professionals.",
@@ -100,7 +100,7 @@ export const getAllProducts = async () => {
 			name: "Whole Milk",
 			price: 799.99,
 			image: "/assets/images/image_fx_ (2).jpg?height=200&width=200",
-			category: "Dairy Products",
+			category: "dairy_products",
 			location: "Adama",
 			rating: 4.7,
 			description: "Experience lightning-fast connectivity with our product.",
@@ -110,7 +110,7 @@ export const getAllProducts = async () => {
 			name: "Herbal Honey",
 			price: 299.99,
 			image: "/assets/images/image_fx_ (3).jpg?height=200&width=200",
-			category: "Beverages",
+			category: "beverages",
 			location: "Awasa",
 			rating: 4.6,
 			description:
@@ -121,7 +121,7 @@ export const getAllProducts = async () => {
 			name: "Mixed Nuts",
 			price: 1499.99,
 			image: "/assets/images/product3.jpg?height=200&width=200",
-			category: "Snacks",
+			category: "snacks",
 			location: "Addis Ababa",
 			rating: 4.8,
 			description:
@@ -132,7 +132,7 @@ export const getAllProducts = async () => {
 			name: "Bagels",
 			price: 1299.99,
 			image: "/assets/images/product4.jpg?height=200&width=200",
-			category: "Bakery",
+			category: "bakery",
 			location: "Adama",
 			rating: 4.4,
 			description:
@@ -143,7 +143,7 @@ export const getAllProducts = async () => {
 			name: "Protein Powder",
 			price: 249.99,
 			image: "/assets/images/banner1.jpg?height=200&width=200",
-			category: "Health & Wellness",
+			category: "health",
 			location: "Bahir Dar",
 			rating: 4.3,
 			description:
@@ -156,13 +156,17 @@ export const getAllProducts = async () => {
 
 export const getCategories = async () => {
 	const categories = [
-		{ name: "Fruits & Vegetables", icon: Apple },
-		{ name: "Dairy Products", icon: Egg },
-		{ name: "Beverages", icon: Carrot },
-		{ name: "Snacks", icon: Fish },
-		{ name: "Bakery", icon: Milk },
-		{ name: "Wearables", icon: Apple },
-		{ name: "Health", icon: Fish },
+		{
+			name: "Fruits & Vegetables",
+			value: "fruits_and_vegetables",
+			icon: Apple,
+		},
+		{ name: "Dairy Products", value: "dairy_products", icon: Egg },
+		{ name: "Beverages", value: "beverages", icon: Carrot },
+		{ name: "Snacks", value: "snacks", icon: Fish },
+		{ name: "Bakery", value: "bakery", icon: Milk },
+		{ name: "Wearables", value: "wearables", icon: Apple },
+		{ name: "Health", value: "health", icon: Fish },
 	];
 
 	return categories;

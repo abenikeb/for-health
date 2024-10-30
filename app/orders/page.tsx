@@ -58,7 +58,7 @@ export default function OrdersPage() {
 									</div>
 									<div className="text-right">
 										<p className="font-semibold text-lg">
-											${order.total.toFixed(2)}
+											{order.total.toFixed(2)} Birr
 										</p>
 
 										<Badge
@@ -107,7 +107,7 @@ export default function OrdersPage() {
 													Quantity: {item.quantity}
 												</p>
 												<p className="text-sm font-medium">
-													${item.price.toFixed(2)}
+													{item.price.toFixed(2)} Birr
 												</p>
 											</div>
 										</div>

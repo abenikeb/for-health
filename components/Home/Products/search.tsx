@@ -6,19 +6,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { ScrollArea, ScrollBar } from "@components/ui/scroll-area";
-
-const categories = [
-	{ name: "Fruits & Vegetables", icon: "Laptop" },
-	{ name: "Dairy Products", icon: "Smartphone" },
-	{ name: "Beverages", icon: "Headphones" },
-	{ name: "Snacks", icon: "Camera" },
-	{ name: "Bakery", icon: "Tv" },
-	{ name: "Wearables", icon: "Watch" },
-	{ name: "Health & Wellness", icon: "Gamepa" },
-];
+import { getCategories } from "@lib/data";
 
 const Search = () => {
 	const [searchQuery, setSearchQuery] = useState("");
+	const [categories, setCategories] = useState<any>([]);
+
+	const fetchCategories = async () => {
+		const fetchedCategories = await getCategories();
+		setCategories(fetchedCategories);
+	};
+
+	useEffect(() => {
+		fetchCategories();
+	}, []);
+
 	const handleSearch = (e: React.FormEvent) => {
 		e.preventDefault();
 		// Implement search functionality here
@@ -45,7 +47,7 @@ const Search = () => {
 					</form>
 					<ScrollArea className="w-[11/12] whitespace-nowrap">
 						<div className="flex space-x-2">
-							{categories.map((category) => (
+							{categories.map((category: any) => (
 								<Link
 									key={category.name}
 									href={`/category/${category.name.toLowerCase()}`}
@@ -56,15 +58,6 @@ const Search = () => {
 						</div>
 						<ScrollBar orientation="horizontal" />
 					</ScrollArea>
-
-					{/* <div className="bg-[#27323e] pt-2 ">
-						<div className=" mx-auto px-1">
-							<div className="flex items-center text-sm text-gray-100">
-								<MapPin className="h-4 w-4 mr-1" />
-								<span>Deliver to: Addis Ababa, Ethiopia</span>
-							</div>
-						</div>
-					</div> */}
 				</div>
 			</div>
 		</div>
