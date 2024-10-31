@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getCategories } from "@/lib/data";
+import Account from "@/components/Home/account";
 
 export default function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,7 +82,7 @@ export default function Header() {
 										<nav className="space-y-6">
 											<div className="space-y-3">
 												<h3 className="font-semibold text-lg text-gray-900">
-													Shop By Department
+													Shop By Category
 												</h3>
 												{categories.map((category: any) => (
 													<Link
@@ -160,27 +161,11 @@ export default function Header() {
 								side="right"
 								className="w-[300px] sm:w-[400px] bg-white">
 								<ScrollArea className="h-full">
-									<div className="flex flex-col gap-6 p-6">
+									<div className="flex flex-col gap-6 pt-6">
 										<h2 className="font-semibold text-xl text-gray-900">
 											Your Account
 										</h2>
-										<nav className="space-y-3">
-											{accountMenuItems.map((item) => (
-												<Link
-													key={item.name}
-													href={item.href}
-													className="flex items-center justify-between text-sm text-gray-600 hover:text-amber-600 transition-colors"
-													onClick={() => setIsAccountOpen(false)}>
-													<span>{item.name}</span>
-													<ChevronRight className="h-4 w-4" />
-												</Link>
-											))}
-										</nav>
-										<Button
-											className="w-full"
-											onClick={() => setIsAccountOpen(false)}>
-											Sign Out
-										</Button>
+										<Account />
 									</div>
 								</ScrollArea>
 							</SheetContent>

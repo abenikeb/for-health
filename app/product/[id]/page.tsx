@@ -18,8 +18,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { useRouter } from "next/navigation";
 
 export default function ProductPostPage() {
+	const router = useRouter();
 	const [currentImage, setCurrentImage] = useState(0);
 
 	const product = {
@@ -51,6 +53,10 @@ export default function ProductPostPage() {
 		setCurrentImage(
 			(prev) => (prev - 1 + product.images.length) % product.images.length
 		);
+	};
+
+	const handleBuyNow = (productId: string) => {
+		router.push(`/checkout`);
 	};
 
 	return (
@@ -118,7 +124,10 @@ export default function ProductPostPage() {
 					</div>
 					<p className="text-muted-foreground">{product.description}</p>
 					<div className="flex items-center space-x-4">
-						<Button className="flex-1">Buy Now</Button>
+						<Button onClick={() => handleBuyNow("roductId")} className="flex-1">
+							Buy Now
+						</Button>
+
 						<Button variant="outline" size="icon">
 							<Heart className="h-4 w-4" />
 						</Button>

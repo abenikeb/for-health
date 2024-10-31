@@ -53,13 +53,6 @@ export default function Product() {
 	const [categories, setCategories] = useState<any>([]);
 	const [locations, setLocations] = useState<any>([]);
 
-	// const categories = [
-	// 	...new Set(allProducts.map((product: any) => product.category)),
-	// ];
-	// const locations = [
-	// 	...new Set(allProducts.map((product: any) => product.location)),
-	// ];
-
 	const fetcProductItems = async () => {
 		const products = await getAllProducts();
 		setAllProducts(products);

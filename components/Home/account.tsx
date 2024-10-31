@@ -36,7 +36,7 @@ const formSchema = z.object({
 		.regex(/^\d{1,3}\d{10}$/, "Please enter a valid phone number."),
 });
 
-export default function LoginPage() {
+export default function Account() {
 	const { data: session } = useSession();
 	const router = useRouter();
 	const [signInClicked, setSignInClicked] = useState(false);
@@ -87,8 +87,8 @@ export default function LoginPage() {
 	}, []);
 
 	return (
-		<div className="flex min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
-			<div className="flex-1 hidden lg:flex lg:flex-col lg:justify-center lg:items-center">
+		<div className="flex h-auto w-full ">
+			{/* <div className="flex-1 hidden lg:flex lg:flex-col lg:justify-center lg:items-center">
 				<div className="text-center text-white mb-8">
 					<h1 className="text-5xl font-bold mb-4">Welcome to For Health</h1>
 					<p className="text-xl">{`Your gateway to seamless connections`}</p>
@@ -100,7 +100,7 @@ export default function LoginPage() {
 					height={600}
 					className="max-w-2xl opacity-80"
 				/>
-			</div>
+			</div> */}
 			<div className="flex-1 flex flex-col mt-12 items-center px-4 sm:px-6 lg:px-8">
 				<div className="w-full max-w-md">
 					{session?.user ? (
@@ -142,7 +142,7 @@ export default function LoginPage() {
 							</CardContent>
 						</Card>
 					) : (
-						<div className="w-full max-w-sm">
+						<div className="w-full">
 							<div className="text-center mb-8">
 								<h2 className="mt-6 text-3xl font-extrabold text-gray-900">
 									Welcome to For Health

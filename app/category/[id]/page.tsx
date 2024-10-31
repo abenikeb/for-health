@@ -23,7 +23,6 @@ export default function CategoryPage({ params }: any) {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
-	// Get category from URL query (e.g., /category?name=Laptops)
 	// const selectedCategory = searchParams.get("name") || "All";
 	const selectedCategory = params.id || "All";
 
