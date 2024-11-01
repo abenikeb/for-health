@@ -99,8 +99,8 @@ const Search = () => {
 
 	return (
 		<div className="bg-gradient-to-r from-[#ffffff] to-[#ffffff] py-2 shadow-md">
-			<div className="container mx-auto px-4">
-				<form onSubmit={handleSearch} className="flex my-4">
+			<div className="container mx-auto pl-4 pr-0">
+				<form onSubmit={handleSearch} className="flex my-2 mr-4">
 					<Input
 						type="search"
 						placeholder="Search For HealthMarket"
@@ -123,7 +123,7 @@ const Search = () => {
 								href={`/category/${category.name.toLowerCase()}`}
 								className={`flex items-center flex-shrink-0 border rounded-md py-[0.4rem] px-4 text-sm font-medium transition-all duration-200 ${
 									activeCategory === category.name.toLowerCase()
-										? "bg-white text-[#232f3f] border-[#232f3f]"
+										? "bg-white text-[#232f3f] border-[#636870] border"
 										: "bg-gradient-to-r from-[#232f3f] to-[#febe66]  text-white hover:bg-[#232f3f]"
 								}`}>
 								<category.icon className="h-4 w-4 mr-2" />
