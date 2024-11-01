@@ -1,4 +1,4 @@
-import { Apple, Egg, Carrot, Milk, Fish } from "lucide-react";
+import { Apple, Grid, Egg, Carrot, Milk, Fish } from "lucide-react";
 
 export const getUserOrder = async () => {
 	// Mock data for orders with more details
@@ -156,6 +156,11 @@ export const getAllProducts = async () => {
 
 export const getCategories = async () => {
 	const categories = [
+		{
+			name: "All",
+			value: "fruits_and_vegetables",
+			icon: Grid,
+		},
 		{
 			name: "Fruits & Vegetables",
 			value: "fruits_and_vegetables",
