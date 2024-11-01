@@ -26,7 +26,7 @@ const Hero = () => {
 	}, []);
 
 	return (
-		<section className="relative h-[300px] overflow-hidden">
+		<section className="relative h-[150px] overflow-hidden">
 			{bannerImages.map((image, index) => (
 				<img
 					key={index}
