@@ -115,8 +115,8 @@ const Search = () => {
 					</Button>
 				</form>
 
-				<ScrollArea className="w-full whitespace-nowrap pb-2">
-					<div className="flex space-x-2">
+				<ScrollArea className="w-full whitespace-nowrap pb-2 ">
+					<div className="flex space-x-2 mt-1">
 						{categories.map((category: any) => (
 							<Link
 								key={category.name}
@@ -124,14 +124,14 @@ const Search = () => {
 								className={`flex items-center flex-shrink-0 border rounded-md py-[0.4rem] px-4 text-sm font-medium transition-all duration-200 ${
 									activeCategory === category.name.toLowerCase()
 										? "bg-white text-[#232f3f] border-[#636870] border"
-										: "bg-gradient-to-r from-[#232f3f] to-[#febe66]  text-white hover:bg-[#232f3f]"
+										: "bg-gradient-to-r from-[#8c9db4] to-[#ead0ab]  text-gray-800 hover:bg-[#232f3f]"
 								}`}>
-								<category.icon className="h-4 w-4 mr-2" />
+								{/* <category.icon className="h-4 w-4 mr-2" /> */}
 								{category.name}
 							</Link>
 						))}
 					</div>
-					<ScrollBar orientation="horizontal" className="bg-blue-600" />
+					<ScrollBar orientation="horizontal" className="" />
 				</ScrollArea>
 			</div>
 		</div>

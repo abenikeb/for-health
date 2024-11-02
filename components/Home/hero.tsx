@@ -25,7 +25,7 @@ const Hero = () => {
 	}, []);
 
 	return (
-		<section className="relative h-[180px] overflow-hidden bg-gradient-to-r from-[#4b5d74] to-[#86794c] rounded-md">
+		<section className="relative h-[180px] overflow-hidden bg-gradient-to-r from-[#4b5d74] to-[#86794c]">
 			<div className="absolute inset-0 opacity-20">
 				{bannerImages.map((image, index) => (
 					<img
@@ -42,8 +42,7 @@ const Hero = () => {
 				<div className="flex flex-col sm:flex-row items-center justify-between w-full gap-4">
 					<div className="text-center sm:text-left">
 						<h1 className="text-2xl sm:text-3xl font-bold leading-tight text-white mb-2">
-							Welcome to{" "}
-							<span className="text-[#febe66]">For Health Market</span>
+							Welcome to <span className="text-[#febe66]">Health Market</span>
 						</h1>
 						<p className="text-sm sm:text-base text-white font-light">
 							Discover amazing deals on your favorite health products
