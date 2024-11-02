@@ -25,7 +25,7 @@ const Hero = () => {
 	}, []);
 
 	return (
-		<section className="relative h-[180px] overflow-hidden bg-gradient-to-r from-[#4b5d74] to-[#86794c]">
+		<section className="relative h-[180px] overflow-hidden bg-gradient-to-r from-[#4b5d74] to-[#4b5d74]">
 			<div className="absolute inset-0 opacity-20">
 				{bannerImages.map((image, index) => (
 					<img
