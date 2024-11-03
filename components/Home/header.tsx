@@ -155,8 +155,8 @@ export default function Header() {
 	return (
 		<header className="bg-[#232f3f] sticky top-0 z-50 w-full backdrop-blur text-white">
 			<div className="container mx-auto px-4 py-2">
-				<div className="flex items-center justify-between">
-					<div className="flex items-end space-x-2">
+				<div className="flex items-center justify-between ">
+					<div className="flex items-center space-x-2">
 						<Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
 							<SheetTrigger asChild>
 								<Button variant="ghost" size="icon" className="text-white">
@@ -231,7 +231,7 @@ export default function Header() {
 						</Link>
 					</div>
 
-					<div className="flex items-center space-x-4">
+					<div className="flex items-center space-x-8 mr-2">
 						<Button
 							variant="ghost"
 							size="icon"
