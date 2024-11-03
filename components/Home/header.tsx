@@ -88,6 +88,8 @@ export default function Header() {
 		(async () => {
 			const res = await getProviders();
 			setProviders(res);
+			if (session?.user?.email) {
+			}
 			console.log({ res });
 		})();
 	}, []);
